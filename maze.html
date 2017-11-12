@@ -1,0 +1,74 @@
+<script>
+//a=prompt().split`\n`;
+a=`#########################################################################
+#   #               #               #           #                   #   #
+#   #   #########   #   #####   #########   #####   #####   #####   #   #
+#               #       #   #           #           #   #   #       #   #
+#########   #   #########   #########   #####   #   #   #   #########   #
+#       #   #               #           #   #   #   #   #           #   #
+#   #   #############   #   #   #########   #####   #   #########   #   #
+#   #               #   #   #       #           #           #       #   #
+#   #############   #####   #####   #   #####   #########   #   #####   #
+#           #       #   #       #   #       #           #   #           #
+#   #####   #####   #   #####   #   #########   #   #   #   #############
+#       #       #   #   #       #       #       #   #   #       #       #
+#############   #   #   #   #########   #   #####   #   #####   #####   #
+#           #   #           #       #   #       #   #       #           #
+#   #####   #   #########   #####   #   #####   #####   #############   #
+#   #       #           #           #       #   #   #               #   #
+#   #   #########   #   #####   #########   #   #   #############   #   #
+#   #           #   #   #   #   #           #               #   #       #
+#   #########   #   #   #   #####   #########   #########   #   #########
+#   #       #   #   #           #           #   #       #               #
+#   #   #####   #####   #####   #########   #####   #   #########   #   #
+#   #                   #           #               #               #   #
+# X #####################################################################`.split`\n`
+h=a.length;
+w=a[0].length;
+do{
+    y=Math.random()*h|0;
+    x=Math.random()*w|0;
+}while(a[y][x]!=' ');
+function draw(x,y,p){
+str=[...a[y]];
+str[x]=p;
+a[y]=str.join``;
+}
+//x=w-2
+//y=20
+draw(x,y,'H')
+const dirs=`0,-1,^
+0,1,v
+-1,0,<
+1,0,>`.split`
+`.map(v=>v.split`,`);
+// [xLoc, yLoc, curDir, crumb]
+var stack=dirs.map(([dx,dy,d])=>{
+    nx = x + +dx;
+    ny = y + +dy;
+    return a[ny][nx]==' '&&[nx, ny, d];
+}).filter(Boolean)
+dead = new Set()
+for(step=0;stack.length&&step<10000;step++){
+  if(end=stack.find(([x,y])=>a[y][x]=='X'))break
+  for(var [nx,ny] of stack)dead.add(nx+','+ny)
+  g=[].concat(...stack.map((pass)=>{
+    var [nx,ny,d,crumb]=pass;
+    return dirs.map(([dx,dy,d])=>{
+      var nnx=nx+ +dx
+      var nny=ny+ +dy
+      return !dead.has(nnx+','+nny)&&0<=nnx&&0<=nny&&nnx<w&&nny<h&&a[nny][nnx]!='#'&&a[nny][nnx]!='H'&&[nnx, nny, d, pass];
+    })
+  }));
+  g=g.filter(Boolean)
+  g=g.filter(([ox,oy],i)=>i===g.findIndex(([x,y])=>x==ox&&y==oy))
+  stack=g
+}
+//stack.map(([x,y])=>draw(x,y,'O'))
+//writeln(step)
+//writeln(end)
+for(;end[3];end=end[3])draw(end[3][0],end[3][1],end[2])
+draw(...end)
+//writeln(a.join`\n`)
+document.write('<pre>'+a.join`\n`+'</pre>')
+</script>
