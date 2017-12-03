@@ -1,0 +1,30 @@
+u=h=1
+i=gets.to_i
+
+h=(u+=2)**2 while h<i
+p h,i,u,''
+p h-i,h-i-(u+1),h-i-(u+1)*2,h-i-(u+1)*3
+p h,h-(u+1),h-(u+1)*2,h-(u+1)*3
+l=v=h-i
+(l=v
+v=v-u+1)while v>0
+p u,l,u-l
+d=u/2
+p d,v,d+d-v.abs
+p (h-i-u)
+p 361797-361527
+#!ruby
+s=[[n=1]]
+i=gets.to_i
+h=u=1
+(h=(u+=2)**2
+s=s.reverse.map{|x|x+[n+=1]}.reverse
+s=[[*n+1..n+u].reverse]+(n+=u
+s.map{|x|[n+=1]+x})
+s=s+[[*n+1..n+u]]
+n+=u
+) while h<i
+p '1:',s[u/2][u/2],q=u/2,u/2
+g=0
+p "#{i}:",h=s.index{|x|g=x.index(i)},g
+p (q-h).abs+(q-g).abs

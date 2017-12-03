@@ -1,4 +1,3 @@
-if false
 g=gets.chomp
 h=[]
 #scan(/(\d)(?=\1)/){|x|h<<($1.to_i)}
@@ -15,6 +14,3 @@ m=gets.chars
 scan(/(\d)(?=\1)/){|x|h+=$1.to_i}
 h+=$1.to_i if g[0]==g[-1]
 p h
-end
-(m=gets.chars).zip(m.rotate){|x,y|x==y&&$.+=x.to_i}
-p$.-1

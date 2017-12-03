@@ -1,4 +1,5 @@
 p$<.map{|x|l=x.split.map &:to_i
+# l.max-l.min}.sum # this was part 1 solution
 l.sort!
 p l
 v=0
