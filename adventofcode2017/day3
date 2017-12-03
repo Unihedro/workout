@@ -1,0 +1,27 @@
+s=[[n=1]]
+i=gets.to_i
+h=u=1
+tl=0
+tt=->n{(p s,n
+exit)if n>i
+tl=n}
+(h=(u+=2)**2
+s=s.reverse!.tap{|x|p x}.map.with_index{|x,i|p i,tl
+x+[tt[(i>0?tl:0)+[(i>0)?s[i-1][-1]:nil,s[i][-1],s[i+1]&&s[i+1][-1]].compact.sum]]}.reverse # Here lies a glorious bug: I was doing map!.&&&.reverse!, which was causing [-1] to find that last element we just inserted.
+p s
+r1=[(0...u).map.with_index{|*,i|tt[s[0][[0,u-3-i].max...u-i].sum+(i>0?tl:0)]}
+ .reverse]
+ts=[r1[0][1..-1]]+s
+#r1#s=(#n+=u
+  n+=u
+#p ts,s
+s.map!.with_index{|x,i|[tt[ts[i,3].map(&:first).sum+tl]]+x}
+s=r1+s
+s+=[(0...u).map{|i|tt[s[-1][[0,i-1].max..i+1].sum+(i>0?tl:0)]}]
+n+=u
+p s
+) while h<i
+p '1:',s[u/2][u/2],q=u/2,u/2
+g=0
+p "#{i}:",h=s.index{|x|g=x.index(i)},g
+p (q-h).abs+(q-g).abs

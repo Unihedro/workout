@@ -1,0 +1,9 @@
+p$<.map{|x|l=x.split.map &:to_i
+l.sort!
+p l
+v=0
+m=l.reverse.find{|x|l.any?{|y|#next if
+v=y
+ x!=y &&(y%x<1)}}
+v/m
+}.sum
