@@ -1,4 +1,4 @@
-#Note: This log contains snippets / code which solves Advent of Code 2017's problems. It is extremely difficult to unsee a solution after you have seen it.
+# Note: This log contains snippets / code which solves Advent of Code 2017's problems. It is extremely difficult to unsee a solution after you have seen it.
 
 # Please do not ignore this notice; you will be doing yourself a massive disservice by skipping out on this wonderful curated list of challenges to get you into shape. It is a good exercise for those who are capable, and a good trail to follow to those who needs directions on what to learn.
 
