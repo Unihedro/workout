@@ -203,4 +203,36 @@ This one was so easy it feels like quite a joke. I'll take it!
         4   00:00:51     8     93   00:01:29     4     97
         3   00:44:45   781      0   01:49:55   883      0
         2   00:01:04     7     94   00:18:12   571      0
-      -- Advent of Code day 4: 32
+      -- Advent of Code day 4: #32
+
+Day 5:
+
+I don't have a joke for this one. I so had it, in almost a minute too, but I was running day4's code instead... I know I shouldn't had kept all these files around. :p
+
+    h=$<.map &:to_i
+    s=0
+    g=j=0
+    (g+=1
+    v=h[j=s]
+    v<0 ? (s+=v) : (
+    s+=v
+    )
+    h[j]+=1 # part1
+    h[j]+=(j >= 3 ? -1 : 1) #part2
+    )while s>=0 && h[s]
+    p g
+
+"Offset" is the keyword that locked my brain into thinking "switch pointer based on value", and I was correct. I read the problem example as I was coding as I saw the "increment last value" rule and went back to add `j=s` and `h[j]+=1` in time.
+
+I whined for twenty minutes in my chats.
+
+This is why you get organized and don't keep scrap code around. This marks the day I'm going to organize the folder and move my Aoc code environment out of the repo...
+
+          -------Part 1--------   -------Part 2--------
+    Day       Time  Rank  Score       Time  Rank  Score
+      5   00:07:10   505      0   00:07:59   360      0
+      4   00:00:51     8     93   00:01:29     4     97
+      3   00:44:45   781      0   01:49:55   883      0
+    -- Advent of Code day 5: #49
+
+I'm not sure if I'll continue writing the waterfall instant-reaction sections (for at least a short while at least), since they're taking quite a lot of work. From day 6 onwards, I'm going to record while solving and go back after the batch when I have time to transcript them back into proper entries. See you on the next page!
