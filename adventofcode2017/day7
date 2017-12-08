@@ -1,0 +1,22 @@
+h={}
+o=[]
+$<.map{|x|x=~/^(\S+) \((\d+)\) ?([^>]+> )?/
+#p $1, $'
+l=($3 ? ($'.split(', ').map(&:to_sym)) : [])
+h[$1.to_sym]=[$2.to_i,l]
+o+=l
+}
+q={}
+
+# part 1 only
+p h.delete_if{|x,y|!y.any? || o.index(x)}
+
+# part 2 here
+h.delete_if{|x,y|a,b=y
+#p b
+ h[x]=q[x]=[a,b,a+b.sum{|x|h[x] ? h[x][0] : q[x][2]}] if b.all?{|x|!h[x] || (!h[x].any?)}}while h.any?
+#p h.reject!{|x,y|y[0]!=y[2]&&y[2]!=0}
+ q.map{|x,y|a,b,c=y
+t=b.map{|x|q[x][2]}
+(p x,a,b,c,t,q[x]) if t.uniq.count>1
+}

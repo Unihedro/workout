@@ -1,0 +1,11 @@
+h=Hash.new{"0"}
+l=[]
+o=$<.map{|x|x.chomp=~/(\S+) (i)?\S+ (-?\d+) if ((\S+).+)/
+l<<$1
+p [$1,$2,$3.to_i,$4,$5]}
+l.each{|x|h[x]=0}
+q=[] # added in part 2 (also q<<
+o.each{|a,b,c,e,d|next if !eval(e.sub(d,h[d].to_s))
+b ? q<<(h[a]+=c) : h[a]-=c}
+p h.max_by{|x,y|y}[1] # part 1
+p [h.max_by{|x,y|y}[1],q.max].max # part 2

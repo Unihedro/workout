@@ -1,0 +1,14 @@
+p (s=gets.split.map &:to_i)
+m=s.size
+h={}
+(h[s.to_s]=ii
+v=s.max
+i=s.index(v)
+s[i]=0
+v>=m && (s.map!{|x|x+v/m}
+v-=v/m*m)
+j=p
+(i..i+v).map{|x|x==i ? j=1 : x>=m ? s[x-m]+=1 : s[x]+=1 }
+#s[v]+=1 if j
+p s)while !h[s.to_s]
+p ii-h[s.to_s]
