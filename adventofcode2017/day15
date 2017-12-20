@@ -1,0 +1,16 @@
+f=16807
+g=48271
+h=2147483647
+j=65535
+i=0
+a=gets[/\d+$/].to_i
+b=gets[/\d+$/].to_i
+40000000.times{ # part 1
+5000000.times{ # part 2
+loop{a=a*f%h # part 1: only keep this
+break if a%4<1}
+loop{b=b*g%h # part 1: only keep this
+break if b%8<1}
+i+=1 if 0== (a&j)^(b&j)
+}
+p i

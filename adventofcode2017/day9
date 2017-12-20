@@ -1,0 +1,15 @@
+h=0
+v=gets.gsub(/!./,'').gsub(/<(.*?)>/){
+h+=$1.size # part 2
+''
+}
+p h
+exit # part 1
+h=0
+s=[]
+p v
+p v=v.tr('^{}','')
+v.chars{|x|(h+=s.size
+next s.pop) if x=='}'
+s<<x}
+p h

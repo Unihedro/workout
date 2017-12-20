@@ -1,16 +1,6 @@
 g=gets.chomp
 h=[]
-#scan(/(\d)(?=\1)/){|x|h<<($1.to_i)}
-#h<<$1.to_i if g[/^(.).+\1$/]
-h=[]
-s= ~/$/
-g=g.chars.map &:to_i
-g.zip(g[s/2,9999]+g[0,s/2]){|x,y|
-h << x if x==y}
-p h.inject(:+)
+g.scan(/(\d)(?=\1)/){|x|h<<($1.to_i)}
+h<<$1.to_i if g[/^(.).+\1$/]
 
-h=0
-m=gets.chars
-scan(/(\d)(?=\1)/){|x|h+=$1.to_i}
-h+=$1.to_i if g[0]==g[-1]
-p h
+p h,h.sum

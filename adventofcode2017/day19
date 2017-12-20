@@ -1,0 +1,27 @@
+g=*$<
+x=g[0].index(?|)
+y=1
+n=:down
+o="" # part 1
+o=0 # part 2
+loop{p n
+v=g[y][x]
+o+=1 # part 2
+break if v==' '||y<0||x<0
+o<< v if !'|-+'.index(v) # part 1
+(n==:down ? y+=1 :
+ n==:up ? y-=1 :
+ n==:right ? x+=1 :
+ n==:left ? x-=1 : 0
+next) if v!=?+
+(
+n==:down||n==:up ? (n= g[y][x-1]!=' ' ? :left : :right) :
+(n= g[y-1]&&g[y-1][x]!=' ' ? :up : :down)
+)if v==?+
+(n==:down ? y+=1 :
+ n==:up ? y-=1 :
+ n==:right ? x+=1 :
+ n==:left ? x-=1 : 0)
+p y,x
+}
+p o

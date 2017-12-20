@@ -1,0 +1,19 @@
+g=[0]
+h={}
+$<.map{|x|a,b=x.split' <-> '
+h[a.to_i]=b.split(', ').map &:to_i
+}
+l=[]
+c=0 # part 2
+loop{ # end part 2
+100.times{s=[]
+g.map{|x|s+=h[x]}
+l+=g
+g=s-l}
+c+=1 if h.delete_if{|x,y|l.index x} # part 2
+l=[]
+break unless h.keys.any?
+g=[h.keys.first]
+} # end part 2
+p l.size # part 1
+p l.size,c # part 2

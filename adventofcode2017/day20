@@ -1,0 +1,27 @@
+p g=$<.map.with_index{|x,i|x.chomp=~/<([^<>]+)>.*?<([^<>]+)>.*?<([^<>]+)>/
+a=$1;b=$2;c=$3
+[p([a,b,c]).map{|x|x.split(?,).map &:to_i}.transpose.map{|x|
+n,s,a=x
+99999.times{n+=s
+s+=a}
+n.abs}.sum,i]}.min[1]
+#!ruby
+#part2
+p g=$<.map.with_index{|x,i|x.chomp=~/<([^<>]+)>.*?<([^<>]+)>.*?<([^<>]+)>/
+a=$1;b=$2;c=$3
+[[a,b,c].map{|x|x.split(?,).map &:to_i}.transpose,i,a.split(?,).map(&:to_i)]}
+
+99999.times{h=Hash.new{0}
+g.map{|x|h[x[2]]+=1}
+g.delete_if{|x|h[x[2]]>1}
+g.map!{|q,i|q.map!{|x,y,z|#x+=y
+# see, my code worked for the sample input. it shouldn't have. it gave me the illusion that my code was working correctly. it wasn't. i've mirrored a physics simulation before. that model had to increment by speed before incrementing speed by acceleration. that's the only correct way to simulate physics, at least the way i see it, and from now on i declare it. any other way is invalid.
+# i wrote this code and confidently ran it. program consistently reports 1000. three minutes passed. program consistently reports 1000. five minutes passed, i didn't have anything else to do while i wait, so i went to look at the leaderboards, 25 people completed this. ten minutes. thirty minutes later, the 99999 cycles finished. 1000 was reported.
+# and then i find and fix the bug, and got the right results in ten seconds.
+# fuck my life.
+x+=y+=z
+[x,y,z]}
+p [q,i,q.map{|x|x[0]}.flatten]}
+p g.count
+}
+p g.count
