@@ -1,0 +1,53 @@
+#!ruby
+p g='.#.
+..#
+###'.split
+h={}
+r=$<.map{|x|x=~/([#.\/]+) => ([#.\/]+)/
+p $1,h[$1]=$2.split(?/)}
+# part 1: 5
+18.times{v=g.size
+v.even? ? (#div 2
+g=g.each_slice(2).map{|x|x.map{|x|[*x.chars.each_slice(2)]}.transpose}.map{|x|
+x.map{|x|u=x.map(&:join)*'/'
+next h[u] if h[u]
+u=x.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.reverse.map(&:join)*'/'
+next h[u] if h[u]
+u=x.reverse.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.transpose.map(&:join)*'/'
+next h[u] if h[u]
+u=x.transpose.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.transpose.reverse.map(&:join)*'/'
+next h[u] if h[u]
+u=x.transpose.reverse.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+warn 'not found'}.transpose.map(&:join)
+}.flatten(1)
+) : (
+g=g.each_slice(3).map{|x|x.map{|x|[*x.chars.each_slice(3)]}.transpose}.map{|x|
+x.map{|x|u=x.map(&:join)*'/'
+next h[u] if h[u]
+u=x.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.reverse.map(&:join)*'/'
+next h[u] if h[u]
+u=x.reverse.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.transpose.map(&:join)*'/'
+next h[u] if h[u]
+u=x.transpose.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+u=x.transpose.reverse.map(&:join)*'/'
+next h[u] if h[u]
+u=x.transpose.reverse.map{|x|x.reverse.join}*'/'
+next h[u] if h[u]
+warn('not found')
+}.transpose.map(&:join)
+}.flatten(1)
+)
+}
+p g.join.count ?#
