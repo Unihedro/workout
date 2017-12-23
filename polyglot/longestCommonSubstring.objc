@@ -1,0 +1,19 @@
+int longestCommonSubstring(NSString * s, NSString * t) {
+const char *a=[s UTF8String];
+const char *b=[t UTF8String];
+const int e=strlen(a);
+const int f=strlen(b);
+int d[e][f];
+int m=0;
+for (int i = 0; i < e; i++) {
+for (int j = 0; j < f; j++) {
+d[i][j]=0;
+if(a[i]==b[j]){
+d[i][j]=i==0||j==0 ? 1 : 1+d[i-1][j-1];
+if(d[i][j]>m)
+m=d[i][j];
+
+}
+}}
+return m;
+}
