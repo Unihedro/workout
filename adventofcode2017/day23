@@ -42,7 +42,7 @@ loop{li=i
 i=$f[i,$h2]
 break if i>=ins.size}
 
-p $h2[?h]
+p iii
 #!ruby
 require'continuation'
 d=e=f=g=h=0
