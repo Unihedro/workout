@@ -1,3 +1,4 @@
+// Note: Rejected solution
 int longestCommonSubstring(NSString * s, NSString * t) {
 const char *a=[s UTF8String];
 const char *b=[t UTF8String];
