@@ -1,0 +1,16 @@
+h={}
+g=$<.map{|x|x.chomp.split(?/).map &:to_i}
+c=0
+lu=0
+j=->x,b{x[0,b]+x[b+1,x.size]}
+f=->n,s,q,u{
+(lu=u
+c=s)if u>lu || u==lu && s>c
+q.each.with_index{|x,i|x,y=x
+f[y,s+x+y,j[q,i],u+1]if x==n
+f[x,s+x+y,j[q,i],u+1]if y==n}
+}
+g.each.with_index{|x,i|x,y=x
+f[y,x+y,j[g,i],1]if x==0
+f[x,x+y,j[g,i],1]if y==0}
+p c
