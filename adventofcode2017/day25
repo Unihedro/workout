@@ -1,0 +1,83 @@
+Begin in state A.
+Perform a diagnostic checksum after 12523873 steps.
+
+In state A:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state B.
+  If the current value is 1:
+    - Write the value 1.
+    - Move one slot to the left.
+    - Continue with state E.
+
+In state B:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state C.
+  If the current value is 1:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state F.
+
+In state C:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the left.
+    - Continue with state D.
+  If the current value is 1:
+    - Write the value 0.
+    - Move one slot to the right.
+    - Continue with state B.
+
+In state D:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state E.
+  If the current value is 1:
+    - Write the value 0.
+    - Move one slot to the left.
+    - Continue with state C.
+
+In state E:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the left.
+    - Continue with state A.
+  If the current value is 1:
+    - Write the value 0.
+    - Move one slot to the right.
+    - Continue with state D.
+
+In state F:
+  If the current value is 0:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state A.
+  If the current value is 1:
+    - Write the value 1.
+    - Move one slot to the right.
+    - Continue with state C.
+#!ruby
+s=:A
+a=Hash.new{|x,y|x[y]=0}
+u=0
+12523873.times{v=a[u]
+s=case s
+when :A
+v==0 ? (a[u]=1;u+=1;:B) : (a[u]=1;u-=1;:E)
+when :B
+v==0 ? (a[u]=1;u+=1;:C) : (a[u]=1;u+=1;:F)
+when :C
+v==0 ? (a[u]=1;u-=1;:D) : (a[u]=0;u+=1;:B)
+when :D
+v==0 ? (a[u]=1;u+=1;:E) : (a[u]=0;u-=1;:C)
+when :E
+v==0 ? (a[u]=1;u-=1;:A) : (a[u]=0;u+=1;:D)
+when :F
+v==0 ? (a[u]=1;u+=1;:A) : (a[u]=1;u+=1;:C)
+end
+}
+p a.values.sum
