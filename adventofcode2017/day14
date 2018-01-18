@@ -1,0 +1,71 @@
+# non-competing; see https://www.reddit.com/r/adventofcode/comments/7jpelc/2017_day_14_solutions/dr8fdsd/
+
+# part 1
+input=gets.chomp
+s=0
+128.times{|x|
+    result = `echo '#{input}-#{x}'|ruby day10`
+    puts result
+    s+=result[1,99].to_i(16).to_s(2).count('1')
+}
+puts s
+
+# part 2
+input=gets.chomp
+s=0
+last=nil
+keys=nil
+@count=0
+
+def tally
+    @count += 1
+end
+128.times{|x|
+    p line=`echo '#{input}-#{x}'|ruby day10`[1,99].to_i(16).to_s(2).rjust(128,?0)
+
+    if !last
+        left = nil
+        last = line.chars.map{|x|
+            case x
+            when '0'
+                left = nil
+            when '1'
+                left || left = tally
+            end
+        }
+        keys = [*1..@count]
+    else
+        # [gid1: int, flag1: bool], [gid2, flag2]...
+        zipped = last.zip(line.chars.map(&'1'.method(:==)))
+        map = {}
+        replace = {}
+        left = nil
+        start = @count + 1
+        p last = zipped.map{|up, down|
+            next left = nil if !down
+
+            keys.delete(up)
+
+            if left
+                if up
+                    if map.has_key? up
+                        replace[left] = map[up]
+                    else
+                        map[up] = left
+                    end
+                end
+                left
+            else
+                next left = map[up] if up && map.has_key?(up)
+
+                value = tally
+                map[up] = value if up
+                left = value
+            end
+        }
+        s += keys.size
+        if replace.any? then last.map!{|x|replace.has_key?(x) ? replace[x] : x} end
+        keys = last.uniq.compact
+    end
+}
+p s+keys.size
