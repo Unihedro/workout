@@ -38,15 +38,15 @@ else
   nrand = Random.new random.seed
   pe "seed == #{seed = random.seed}"
 end
-require 'io/console'
-console = IO.console
+pe "> tputs cols"
+pe "#{winwidth = `tput cols`.to_i}"
 times = 10
 pe "... Shuffling #{times} times"
 times.times{|time|
 pe ">>> Shuffling#{".".* 1.+ (time - 1) % 3 if time > 0}"
 # this value is genrand'd -> https://github.com/ruby/ruby/blob/e5c441a4a2885da61df9894ac17b69cb3c5811f2/array.c#L5378
-pe "#{names.size.times.map{|i| nrand.rand(names.size - 1) }.inspect}"[0,console.winsize[1]]
-pe "#{names.shuffle!(random: random).inspect}"[0,console.winsize[1]]
+pe "#{names.size.times.map{|i| nrand.rand(names.size - 1) }.inspect}"[0, winwidth]
+pe "#{names.shuffle!(random: random).inspect}"[0, winwidth]
 }
 pe "... Shuffled #{times} times"
 
@@ -58,27 +58,13 @@ pe "world_height == #{world_height}"
 left  = names.shift names_per_side
 right = names
 max = [left, right].map{|x| x.map(&:size).max }
-pe "world_width == console.winsize[1] - #{max[0]} - #{max[1]} - 2"
+world_width = winwidth - max[0] - max[1] - 2
+pe "world_width == #{world_width}"
 def csi(code) "\e[" + code end
 def cursor(x=nil,y=nil) csi("#{x};#{y}H") end
 def cursor_save() print csi(?s) end
 def cursor_restore() print csi(?u) end
 
-pe "===================================="
-pe "=                                  ="
-pe "=  Maximize your terminal window!  ="
-pe "=                                  ="
-pe "===================================="
-print csi(?F) * 2
-print csi(?C) * 17
-3.downto(1){|t|
-  print t
-  print csi ?D
-  sleep 1
-}
-winsize = console.winsize
-world_width = winsize[1] - max[0] - max[1] - 2
-p winsize[1]
 print csi '2J'
 print csi ?H
 
@@ -93,7 +79,7 @@ maxy = world_width + miny - 1
 chars = [*0..9, *?a..?z, *?A..?Z].join.chars
 world_height.times{|x|
 if parallel
-  (pe left[x / 2].rjust(max[0]) + cursor(x + 1, winsize[1] - max[1] + 1) + right[x / 2]
+  (pe left[x / 2].rjust(max[0]) + cursor(x + 1, winwidth - max[1] + 1) + right[x / 2]
   world[[x + 1, miny]] = chars.shift
   world[[x + 1, maxy]] = chars.shift) if x.odd?
   puts
@@ -102,7 +88,7 @@ else
     pe left[x / 2].rjust(max[0])
   world[[x + 1, miny]] = chars.shift
   elsif x > 0 && x < world_height - 1
-    pe cursor(x + 1, winsize[1] - max[1] + 1) + right[x / 2 - 1]
+    pe cursor(x + 1, winwidth - max[1] + 1) + right[x / 2 - 1]
     world[[x + 1, maxy]] = chars.shift
     puts
   else
@@ -166,4 +152,4 @@ else
 # right
 print (csi(?C) * 2) + csi('41m') + csi('32m') + right[youx / 2 - 1]
 end
-puts cursor(maxx + 1) + csi('0m') + csi('40m') + "size == #{size} && seed == #{seed}"
+puts cursor(maxx + 1) + csi('0m') + csi('40m') + "size == #{size} && world_width == #{world_width} && seed == #{seed}"

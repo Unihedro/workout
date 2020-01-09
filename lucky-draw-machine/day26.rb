@@ -166,4 +166,4 @@ else
 # right
 print (csi(?C) * 2) + csi('41m') + csi('32m') + right[youx / 2 - 1]
 end
-puts cursor(maxx + 1) + csi('0m') + csi('40m') + "size == #{size} && seed == #{seed}"
+puts cursor(maxx + 1) + csi('0m') + csi('40m') + "size == #{size} && world_width == #{world_width} && seed == #{seed}"
